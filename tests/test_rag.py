@@ -21,7 +21,8 @@ def test_empty_corpus():
     assert ask('paid vacation days', [])['status'] == 'abstained'
 
 @pytest.mark.parametrize('claims', [[], [{'quote': 'Invented paid vacation days', 'source': 'x'}],
-    [{'quote': 'Employees receive 99 days', 'source': 'a'}], [{'quote': '', 'source': 'a'}]])
+    [{'quote': 'Employees receive 99 days', 'source': 'a'}], [{'quote': '', 'source': 'a'}],
+    [{'quote': 'Employees receive 20 days', 'source': []}]])
 def test_reject_fabrication(claims):
     assert not grounded(claims, [Chunk('a', 'Employees receive 20 days')])
 
